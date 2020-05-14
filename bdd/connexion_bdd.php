@@ -52,7 +52,7 @@ function inscription(){
                             ];
                             $request3 = "INSERT INTO users (pseudo, email, passwd) VALUES (:pseudo, :email, :passwd);";
                             $request3 = $bd->prepare($request3)->execute($data);
-                            header('location:../pages/accueil.php');
+                            header('location:../html/Map.html');
                         } else {
                             echo "<script type='text/javascript'>alert('Mots de passe non identiques')</script>";
                         }
@@ -69,26 +69,95 @@ function inscription(){
     }
 }
 
+function login() {
+    // Initialisation des variables
+    $email = "";
+    $passwd = "";
+    $request1 = "";
+    $request1bis = "";
+    $request2 = "";
+    $request2bis = "";
+
+    if (isset($_REQUEST['login_btn'])) {
+        if (isset($_POST['email'], $_POST['passwd'])) {
+
+            global $bd, $email, $role, $passwd, $request1, $request1bis, $request2, $request2bis;
+            // recuperation des input
+            $email = $_POST['email'];
+            $passwd = md5($_POST['passwd']);
+
+            // les différentes requetes pour verifier si le pseudo et l'email correspondent bien
+            $request1 = $bd->query('SELECT email FROM users WHERE email = "'.$email.'"');
+            $request1bis = $request1->fetch();
+            $request2 = $bd->query('SELECT passwd FROM users WHERE passwd = "'.$passwd.'"');
+            $request2bis = $request2->fetch();
+
+            // verifier que les champs ne soient pas vides
+            if (!empty($email) && !empty($passwd)) {
+                // verifier si l'email correspond
+                if ($email == $request1bis['email'] && $passwd == $request2bis['passwd']) {
+                    $_SESSION['user'];
+                    header('location:../note/accueil.php');
+                } else {
+                    echo "<script type='text/javascript'>alert('Email ou Mot de passe invalide')</script>";
+                }
+            } else {
+                echo "<script type='text/javascript'>alert('Veuillez remplir tous les champs')</script>";
+            }
+        }
+    }
+}
+
+function logout(){
+    session_start();
+    session_destroy();
+    header('location:../login.php');
+    exit();
+}
+
 /* fonction pour supprimer une note */
-// function delete_note(){
-//     // Supprimer note
-//     if (isset($_GET['idNote'])) {
-//         $id = $_GET['idNote'];
-//         try {
-//             $request = "DELETE FROM ?? WHERE id?=?";
-//             $requestrun = $bd->prepare($request);
-//             $requestrun->execute(array($id));
-//             header('location:../admin/index.php');
-//             echo '<script type="text/javascript">alert("Note supprimée")</script>';
-//         } catch (PDOException $e) {
-//             echo $e->getMessage();
-//         }
-//     }
-// }
+function delete_note(){
+    if (isset($_GET['idNotes'])) {
+        $id = $_GET['idNotes'];
+        try {
+            $request = "DELETE FROM notes WHERE idNotes=?";
+            $requestrun = $bd->prepare($request);
+            $requestrun->execute(array($id));
+            header('location:../html/NoteUtilisateur.php');
+            echo '<script type="text/javascript">alert("Note supprimée")</script>';
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+}
 
 /* fonction pour sajouter une note */
-// function add_note(){
+function add_note(){
+    // Initialisation des variables
+    $quartier = "";
+    $note = "";
 
-// }
+    // if 'register_btn' est clické
+    if (isset($_REQUEST['note_btn'])) {
+        if (isset($_POST['quartier'],$_POST['note'])) {
+            // recuperation des input
+            $quatier = $_POST['quartier'];
+            $note = $_POST['note'];
+
+            if (!empty($quartier) && !empty($note)) {
+                $data = [
+                    'quartier' => $quartier,
+                    'note' => $note,
+                ];
+                $request3 = "INSERT INTO users (pseudo, email, passwd) VALUES (:pseudo, :email, :passwd);";
+                $request3 = $bd->prepare($request3)->execute($data);
+                header('location:../html/NoteUtilisateur.html');
+                echo  "<script type='text/javascript'>alert('Votre note à été ajoutée.')</script>";
+            } else {
+                echo  "<script type='text/javascript'>alert('Veuillez choisir un quartier et une note.')</script>";
+            }
+        }
+    }
+}
 
 ?>
