@@ -1,21 +1,7 @@
 <?php
-$servername = "db5000452337.hosting-data.io";
-$username = "dbu261201";
-$password = "Challenge123!";
+    require '../bdd/connexion_bdd.php';
+    session_start();
 
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=dbs432740", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully";
-    }
-catch(PDOException $e)
-    {
-    echo "Connection failed: " . $e->getMessage();
-    }
-
-
-function inscription(){
     // Initialisation des variables
     $pseudo = "";
     $email = "";
@@ -67,52 +53,51 @@ function inscription(){
             }
         }
     }
-}
-
-
-/* fonction pour supprimer une note */
-function delete_note(){
-    if (isset($_GET['idNotes'])) {
-        $id = $_GET['idNotes'];
-        try {
-            $request = "DELETE FROM notes WHERE idNotes=?";
-            $requestrun = $bd->prepare($request);
-            $requestrun->execute(array($id));
-            header('location:../html/NoteUtilisateur.php');
-            echo '<script type="text/javascript">alert("Note supprimée")</script>';
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-}
-
-/* fonction pour sajouter une note */
-function add_note(){
-    // Initialisation des variables
-    $quartier = "";
-    $note = "";
-
-    // if 'register_btn' est clické
-    if (isset($_REQUEST['note_btn'])) {
-        if (isset($_POST['quartier'],$_POST['note'])) {
-            // recuperation des input
-            $quatier = $_POST['quartier'];
-            $note = $_POST['note'];
-
-            if (!empty($quartier) && !empty($note)) {
-                $data = [
-                    'quartier' => $quartier,
-                    'note' => $note,
-                ];
-                $request3 = "INSERT INTO users (pseudo, email, passwd) VALUES (:pseudo, :email, :passwd);";
-                $request3 = $bd->prepare($request3)->execute($data);
-                header('location:../html/NoteUtilisateur.html');
-                echo  "<script type='text/javascript'>alert('Votre note à été ajoutée.')</script>";
-            } else {
-                echo  "<script type='text/javascript'>alert('Veuillez choisir un quartier et une note.')</script>";
-            }
-        }
-    }
-}
-
 ?>
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="../css/style.css"/>
+
+    <title>Inscription</title>
+</head>
+
+<body>
+
+<!-- Container -->
+<div class="container">
+    <div class="inscription shadow-lg bg-white rounded">
+        <h2 class="h2_co">Inscription</h2>
+        <p class="h2_co">Veuillez remplir tous les champs.</p>
+        <form action="register.php" method="post">
+            <div class="form-group">
+                <label>Pseudo</label>
+                <input type="text" name="pseudo" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" aria-describedby="emailHelp">
+            </div>
+            <div class="form-group">
+                <label>Mot de passe</label>
+                <input type="password" name="passwd1" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Confirmez le mot de passe</label>
+                <input type="password" name="passwd2" class="form-control">
+            </div>
+            <div class="h2_co">
+                <button type="submit" name="register_btn" class="btn btn-primary" value="S'inscrire">S'inscrire</button>
+            </div>
+            <div class="h2_co">
+                <p>Déjà membre ? <a href="login.php">Se connecter</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
