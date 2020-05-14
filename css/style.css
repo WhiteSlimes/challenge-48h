@@ -104,3 +104,55 @@ body {
 .mastfoot {
     color: rgba(255, 255, 255, .5);
 }
+em {
+	display: block;
+	margin: .5em auto 2em;
+	color: #bbb;
+}
+
+p, p a { 
+	color: #aaa;
+	text-decoration: none;
+}
+p a:hover,
+p a:focus {
+	text-decoration: underline;
+}
+p + p { color: #bbb; margin-top: 2em;}
+.detail {position: absolute; text-align: right; right: 5px; bottom: 5px; width: 50%;}
+
+a[href*="intent"] {
+	display:inline-block;
+	margin-top: 0.4em;
+}
+/*  
+ * Rating styles
+ */
+.rating {
+	width: 226px;
+	margin: 0 auto 1em;
+	font-size: 45px;
+	overflow:hidden;
+}
+.rating a {
+	float:right;
+	color: #aaa;
+	text-decoration: none;
+	-webkit-transition: color .4s;
+	-moz-transition: color .4s;
+	-o-transition: color .4s;
+	transition: color .4s;
+}
+.rating a:hover,
+.rating a:hover ~ a,
+.rating a:focus,
+.rating a:focus ~ a		{
+	color: orange;
+	cursor: pointer;
+}
+.rating2 {
+	direction: rtl;
+}
+.rating2 a {
+	float:none
+}
