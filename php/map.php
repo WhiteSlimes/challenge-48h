@@ -1,20 +1,25 @@
+<?php
+require '../php/connexion.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>HoodFuss</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    
+    <link href="../css/style.css" rel="stylesheet">
 </head>
 <body>
 <header class="masthead mb-auto">
     <div class="inner">
         <h3 class="masthead-brand">HoodFuss</h3>
         <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link" href="../php/index.php.php">Accueil</a>
-            <a class="nav-link" href="../php/note_utilisateur.php">Quartier</a>
-            <a class="nav-link active" href="Map.html">Carte</a>
+            <a class="nav-link" href="../php/index.php">Accueil</a>
+            <a class="nav-link active" href="../php/note_utilisateur.php">Quartier</a>
+            <a class="nav-link" href="../php/map.php">Carte</a>
             <a class="nav-link" href="../php/top.php">Top</a>
             <a class="nav-link" href="../php/inscription.php">S'enregistrer</a>
         </nav>
@@ -50,5 +55,4 @@
 
     </script>
 </body>
-
 </html>

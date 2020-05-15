@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
     require '../bdd/connexion_bdd.php';
     session_start();
 
@@ -38,7 +41,7 @@
                             ];
                             $request3 = "INSERT INTO users (pseudo, email, passwd) VALUES (:pseudo, :email, :passwd);";
                             $request3 = $bd->prepare($request3)->execute($data);
-                            header('location:../html/Map.html');
+                            header('location:../php/note_utilisateur.php');
                         } else {
                             echo "<script type='text/javascript'>alert('Mots de passe non identiques')</script>";
                         }
@@ -70,10 +73,11 @@
 
 <!-- Container -->
 <div class="container">
+    <h1>Veuillez vous inscrire pour accéder à la suite.</h1>
     <div class="inscription shadow-lg bg-white rounded">
         <h2 class="h2_co">Inscription</h2>
         <p class="h2_co">Veuillez remplir tous les champs.</p>
-        <form action="register.php" method="post">
+        <form action="inscription.php" method="post">
             <div class="form-group">
                 <label>Pseudo</label>
                 <input type="text" name="pseudo" class="form-control">
@@ -94,7 +98,7 @@
                 <button type="submit" name="register_btn" class="btn btn-primary" value="S'inscrire">S'inscrire</button>
             </div>
             <div class="h2_co">
-                <p>Déjà membre ? <a href="login.php">Se connecter</a></p>
+                <p>Déjà membre ? <a href="login_user.php">Se connecter</a></p>
             </div>
         </form>
     </div>

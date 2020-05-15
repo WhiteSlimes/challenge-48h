@@ -29,7 +29,7 @@ session_start();
                 // verifier si l'email correspond
                 if ($email == $request1bis['email'] && $passwd == $request2bis['passwd']) {
                     $_SESSION['user'];
-                    header('location:../note/accueil.php');
+                    header('location:../HTML/index.html');
                 } else {
                     echo "<script type='text/javascript'>alert('Email ou Mot de passe invalide')</script>";
                 }
@@ -58,7 +58,7 @@ session_start();
 <div class="container">
     <div class="connexion shadow-lg bg-white rounded">
         <h2 class="h2_co">Connexion</h2>
-        <form action="login.php" method="post">
+        <form action="login_user.php" method="post">
             <div class="form-group">
                 <label>Email</label>
                 <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
