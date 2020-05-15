@@ -11,10 +11,14 @@ try {
     $bd = new PDO("mysql:host=$servername;dbname=dbs436642", $username, $password);
     // set the PDO error mode to exception
     $bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully";
+    $sql = "SELECT latitude, longitude FROM quartiers";  //This is where I specify what data to query
+    $result = $bd->query($sql);
+    echo json_encode($result);
     }
 catch(PDOException $e)
     {
     echo "Connection failed: " . $e->getMessage();
     }
+
+    
 ?>
