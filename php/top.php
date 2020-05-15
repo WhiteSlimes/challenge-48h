@@ -30,12 +30,12 @@ session_start();
 
     <h4 class="cover-heading">Voici la liste des meilleurs quartiers :</h4>
     <ul>
-        <li class="list-group">Nom : </li>
-        <li class="list-group">Etoile :</li>
+        <li class="list-group">Nom : Chartrons</li>
+        <li class="list-group">Etoile : ★★★★</li>
     </ul>
     <ul>
-        <li class="list-group">Nom :</li>
-        <li class="list-group">Etoile :</li>
+        <li class="list-group">Nom :Mériadeck</li>
+        <li class="list-group">Etoile : ★★★★</li>
     </ul>
 
 
