@@ -22,7 +22,7 @@ session_start();
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link" href="../php/index.php">Accueil</a>
                     <a class="nav-link active" href="../php/note_utilisateur.php">Quartier</a>
-                    <a class="nav-link" href="../HTML/Map.html">Carte</a>
+                    <a class="nav-link" href="../HTML/map.html">Carte</a>
                     <a class="nav-link" href="../php/top.php">Top</a>
                     <a class="nav-link" href="../php/inscription.php">S'enregistrer</a>
                 </nav>
