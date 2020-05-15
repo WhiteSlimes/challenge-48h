@@ -52,7 +52,7 @@
     function add_note_moy() {
         $note = intval($note);
         if ($note == 1) {
-            
+
         }
     }
 
